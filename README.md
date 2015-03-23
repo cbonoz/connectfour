@@ -1,7 +1,9 @@
 
-ROI Calculator:
+<h1>ROI Calculator</h1>
 
-====
+README
+
+---
 
 HackerRank
 Chris Buonocore (SE)
@@ -9,7 +11,7 @@ Recently Added: Sumit Tiwari (SE)
 
 Uses the Meteor.js framework
 
----
+====
 
 ROI Calculator Details:
 
