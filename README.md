@@ -1,7 +1,7 @@
 
 <h1>HackerRank ROI Calculator</h1>
 
-<img src='public/hackerrankx.png'/>
+<img src='public/hackerrankx.png' style='size:25%'/>
 
 README
 
