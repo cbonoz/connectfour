@@ -18,6 +18,13 @@
     padding-left: 250px;
 }
 
+#login-buttons {
+    float: right;
+    margin-right:10%;
+    margin-top:2%;
+    width: 100px;
+}
+
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;

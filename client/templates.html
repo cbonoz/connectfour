@@ -1,69 +1,135 @@
+ 
 
 
 
 
 <template name='dashboard'>
-        <h4>HackerRank reduces hire acquisition costs by up to 80% per year</h4>
-        <form class="form-horizontal" name='roi_info'>
-          <div class="form-group">
-            <label for="company" class="col-sm-2 control-label">Company</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="company" placeholder="Company Name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="hire_number" class="col-sm-2 control-label">Hires per Year</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="hire_number" placeholder="#hires">
-            </div>
-          </div>
-        <div class="form-group">
-            <label for="cost_per_hire" class="col-sm-2 control-label">Avg Cost per Hire</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="cost_per_hire" placeholder="Cost per hire ($)">
-            </div>
-          </div>
+  <div id="wrapper">
+        {{> sidebar}}
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">      
+                      <div id='login-buttons'>{{> loginButtons}}</div>
+                      <h4>Enter your ROI company info</h4>
+                      <!-- Form for entering ROI info for company -->
 
-           <input type="submit" value="Calculate" />
-           <button value='Save'>Save</button>
-          <!--
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default">Sign in</button>
-            </div>
-          </div>
-          -->
-        </form>
+                      <!--
 
-        <h3>Saved: ${{savedPrice}}.00</h3>
+                      {{> quickForm collection="Companies" doc=this id="insertCompany" type="insert"}}
+                      -->
+                      
+                    
+                        
+        
+                </div>
+            </div> 
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+        
+
+        
 </template>
+
+
 
 
 <template name='recent'>
-<p>This is the 'recent' template</p>
-  <table class='table'>
-        <tr>
-        <th>Name</th>
-        <th>Company</th>
-        <th>ROI</th>
-        </tr>
-        <tr>
+  <div id="wrapper">
+        {{> sidebar}}
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                <div id='login-buttons'>{{> loginButtons}}</div>
+                <p>This is the 'recent' template</p>
+                  <table class='table'>
+                  <tr>
+                  <th>Company</th>
+                  <th>Employees</th>
+                  <th>ROI of Purchase (%)</th>
+                  <th>Edit</th>
+                  </tr>
+                  <!--
+                    {{#each companies}}
+                        {{> roi_row}}
+                    {{/each}}
+                    -->
+                    </table>
+                 </div>
+            </div> 
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+</template>
 
-        <td>CB</td>
-        <td>Bob Co.</td>
-        <td>$50.00</td>
-        </tr>
-    </table>
 
+<template name='all'>
+  <div id="wrapper">
+        {{> sidebar}}
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                <div id='login-buttons'>{{> loginButtons}}</div>
+
+                <p>This is the 'recent' template</p>
+                  <table class='table'>
+                  <tr>
+                  <th>Company</th>
+                  <th>Employees</th>
+                  <th>ROI of Purchase (%)</th>
+                  <th>Edit</th>
+                  </tr>
+                  <!--
+                    {{#each companies}}
+                        {{> roi_row}}
+                    {{/each}}
+                    -->
+                    </table>
+                 </div>
+            </div> 
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+</template>
+
+        
+<template name="roi_row">
+    <tr class='roi-entry'>
+    <td>{{name}}</td>
+    <td>{{employees}}</td>
+    <td>{{roi}}</td>
+    <td><button type='button' onclick=''>Edit</button></td>
+    </tr>
+</template>
+
+<template name='update_company'>
 
 </template>
 
 
-<template name='general_attributes'>
-
+<template name='about'>
+  <div id="wrapper">
+        {{> sidebar}}
+  
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                <div id='login-buttons'>{{> loginButtons}}</div> 
+                       <h4>About ROI Calculator</h4>
+                        {{> about_text}}
+                </div>
+            </div> 
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>  
 </template>
-
- <!-- examples -->
 
 
 
@@ -75,22 +141,24 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
 
-                    <a href="#" >
+                    <a href="/" >
               
                     <img src='hackerrank_icon.png' class='img-logo'/>
                     
                         &nbsp;ROI Calculator
                     </a>
                 </li>
-
+                
                 <li>
-                    <a href="/" >Dashboard</a>
+                    <a href="/" >New ROI</a>
                 </li>
+                {{#if currentUser}}
                 <li>
-                    <a href="/recent">Recently Calculated</a>
+                    <a href="/recent">Your ROI's</a>
                 </li>
+                {{/if}}
                 <li>
-                    <a href="/all">All Calculated</a>
+                    <a href="/all">All ROI's</a>
                 </li>
                 <!--
                 <li>
@@ -98,13 +166,62 @@
                 </li>
                 -->
                 <li>
-                    <a href="">About</a>
+                    <a href="/about">About</a>
                 </li>
-              
+                <!--
                 <li>
                     <a href="">Contact</a>
                 </li>
+                -->
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 </template>
+
+<template name='about_text'>
+
+<p>This calculation is based on the number of positions filled by each recruiter. An increase in the number of positions filled without an increase in recruiter cost translates into a cost savings. Benefits may also be realized through better candidate screening, improved sourcing or reduced search expenses. Savings may also be realized through a reduction in the use of contract recruiters.</p>
+
+<p>This calculation is based on the increase in positions filled per recruiter from Scenario 1. The improvement is reflected in a shorter time for the recruiter to find and qualify candidates for each position. There may be additional savings in time-to-hire from reduced sourcing time due to the improved job targeting, reduced interview time due to a better short list of candidates, etc. </p>
+
+<p>This calculation only deals with postings to job boards. Additional savings may be realized by analysis of print ads, job fairs and other sourcing activities.</p>
+
+<p>This calculation is based on the small percentage of positions filled by outside agencies. The gains in efficiency realized above may give recruiters more time to fill positions that would otherwise be outsourced to an agency.</p>
+
+<p>Though we would like to just add up the total savings, it is judicious to adjust the calculation. Some savings may or may not be realized as direct cost reductions. Benefits may be realized as improved quality, process improvement or even better retention rates from hiring better candidates.</p>
+
+</template>
+
+<!-- OLD autoform code -->
+<!--
+                        {{#autoForm id="afInsertDemo" type="insert" collection=Collections.People}}
+                      <div class="form-group {{#if afFieldIsInvalid name='firstName'}}has-error{{/if}}">
+                        <label class="control-label">{{afFieldLabelText name='firstName'}}</label>
+                        {{> afFieldInput name='firstName'}}
+                        {{#if afFieldIsInvalid name='firstName'}}
+                        <span class="help-block">{{{afFieldMessage name='firstName'}}}</span>
+                        {{/if}}
+                      </div>
+                      <div class="form-group {{#if afFieldIsInvalid name='lastName'}}has-error{{/if}}">
+                        <label class="control-label">{{afFieldLabelText name='lastName'}}</label>
+                        {{> afFieldInput name='lastName'}}
+                        {{#if afFieldIsInvalid name='lastName'}}
+                        <span class="help-block">{{{afFieldMessage name='lastName'}}}</span>
+                        {{/if}}
+                      </div>
+                      <div class="form-group {{#if afFieldIsInvalid name='age'}}has-error{{/if}}">
+                        <label class="control-label">{{afFieldLabelText name='age'}}</label>
+                        {{> afFieldInput name='age'}}
+                        {{#if afFieldIsInvalid name='age'}}
+                        <span class="help-block">{{{afFieldMessage name='age'}}}</span>
+                        {{/if}}
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Add Person</button>
+                        <button type="reset" class="btn btn-default">Reset Form</button>
+                      </div>
+                    {{/autoForm}}
+                    -->
+
+
+
