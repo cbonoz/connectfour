@@ -14,11 +14,24 @@
                       <div id='login-buttons'>{{> loginButtons}}</div>
                       <h4>Enter your ROI company info</h4>
                       <!-- Form for entering ROI info for company -->
+                      <div class="row">
+                        <div class="span4">
+                          {{> insertCompanyForm}}
+                        </div>
+                        <div class="span4">
+                          {{> insertCompanyForm}}
 
-                      <!--
+                        </div>
+                          {{> insertCompanyForm}}
+                        <div class="span2">
+                          
+                          
+                        </div>
+                      </div>
+                      
 
-                      {{> quickForm collection="Companies" doc=this id="insertCompany" type="insert"}}
-                      -->
+                      
+                      
                       
                     
                         
@@ -33,7 +46,9 @@
         
 </template>
 
-
+<template name="insertCompanyForm">
+  {{> quickForm collection="Companies" id="insertCompanyForm" type="insert"}}
+</template>
 
 
 <template name='recent'>

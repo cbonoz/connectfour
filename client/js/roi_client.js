@@ -8,6 +8,15 @@ Template.recent.helpers({
 
 });
 
+Template.insertCompany.helpers({
+  companies: function () {
+    return Meteor.users;
+  },
+  companySchema: function () {
+    return Schema.Company;
+  }
+});
+
 
 Meteor.methods({
   addCompany: function (company_obj) {
