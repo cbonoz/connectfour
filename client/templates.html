@@ -1,225 +1,68 @@
-   
 
 
 
+<template name='games'>
+{{> header}}
+    <div id="wrapper">
+ 
 
-
-<template name='newroi'>
-  <div id="wrapper">
-        {{> sidebar}}
-        
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                <img class='header-image' src='hackerrank_work_logo.png'/>
-                      <div id='login-buttons'>{{> loginButtons}}</div>
-                      <h4 style='clear: both !important;'>&nbsp;&nbsp;&nbsp;Start a New ROI Calculation Below:</h4>
-
-                         <div class="row">
-
-                          <div class="span6">
-                            
-                            {{> insertCompanyForm}}
-                            </div>
-                            
-                              <div class='span4' style='margin-top: 15px;'>
-                                  <p><b>Please enter exact or approximate values for the fields to the left for the best possible ROI estimate for HackerRank investment. Enter values without commas or symbols ($,%, etc.)</b></p>
-                              </div>
-                            </div>
-
+                
+                       <h4 style='text-align: center;'>Connect 4 Games</h4>
+                       <div class='games-section'>
+                        {{> currentgames}}
+                        </div>
+                        <div class='create-section'>
+                        <i>No Games? Start your own.</i><br/>
+                        <button class='create-button btn-success btn-med'>Start New Game</button>
+                        </div>
                 </div>
             </div> 
         </div>
         <!-- /#page-content-wrapper -->
-    </div>   
+    </div>  
 </template>
 
-
-
-<template name='allroi'>
-  <div id="wrapper">
-        {{> sidebar}}
-        
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-               
-                <div id='login-buttons'>{{> loginButtons}}</div>
-                
-                <h4>List of Previously Calculated ROI's 
-
-                </h4>
-                <!-- 
-                <input type="text" class="name-search" placeholder="Company Search">
-                 -->
-                  
-              
-                
-              
-                <script>
-                console.log('Companies in company table: ' + Companies.find().count());
-                </script>
-                <div >
-                  <table class='table roi'>
-                  <tr>
-                  <th  style='text-align: center;'>Company</th>
-                  <th style='text-align: center;'># Recruiters</th>
-                 <th style='text-align: center;'>View</th>
-                  <th style='text-align: center;'>Edit/Delete</th>
-                  </tr>
-                  {{#each companies}}
-                        {{> company}}
-                    {{/each}}
-                    </table>
-
-                      <div style='text-align: center;'>
-                      {{> flashMessages}}
-                      {{> newCompanyButton}}
-                      <b>{{numCompanies}}</b> ROI Records
-                      </div>
-                    </div>
-                 </div>
-            </div> 
-        </div>
-        <!-- /#page-content-wrapper -->
-    </div>
-</template>
-
-<template name='newCompanyButton'>
-  <div class='new-co'><button class='btn-success btn-med'>Create a New ROI Report</button></div>
-</template>
-
-        
-<template name="company">
-    <tr class='roi-entry'>
-    <td>{{name}}</td>
-    <td>{{num_recruiters}}</td>
-    
-    <td><button type='button' class='view-company btn btn-default'> View </button></td>
-    
-    <td><button type='button' class='edit-company btn btn-info'> Edit </button>
-    &nbsp;
-    <button type='button' class='delete-company btn btn-danger'> Delete </button></td>
+<template name='currentgames'>
+  <table class='table game-table'>
+    <tr>
+    <th style='text-align: center;'>Name</th>
+    <th style='text-align: center;'>Players</th>
+    <th style='text-align: center;'>Join</th>
     </tr>
-</template>
+    {{#each games}}
+      {{> game}}
+    {{/each}}
+    
+  </table>
 
-<template name='roiEditDetail'>
-  <div id="wrapper">
-        {{> sidebar}}
-        
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">     
-                      <div id='login-buttons'>{{> loginButtons}}</div>
-                      <h4>Update the Company ROI Info</h4>
-                      <!-- Form for entering ROI info for company -->
-
-                      <div class="row">
-
-                        <div class="span4">
-                          {{> flashMessages}}
-                          {{> editCompanyForm }}
-                          
-                        </div>
-
-                        <div class="span4">
-                        {{> roi_results}}
-                        
-                          
-                        </div>
-                          
-                      </div>
-
-                </div>
-            </div> 
-        </div>
-        <!-- /#page-content-wrapper -->
-    </div>   
-</template>
-
-<template name='roiViewDetail'>
-  <div id="wrapper">
-        {{> sidebar}}
-        
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">     
-                      <div id='login-buttons'>{{> loginButtons}}</div>
-                      <h4>View the Company ROI Info</h4>
-                      <!-- Form for entering ROI info for company -->
-
-                      <div class="row">
-
-                        <div class="span4">
-                       
-                          {{> viewCompanyForm}}
-                        
-                        </div>
-
-                        <div class="span4">
-
-                        {{> roi_results}}
-                       
-                        </div>
-  
-                    
-                      <div class="row">
-                      <div class='span6 graphs'>
-                      <h4>Graphs go down here:</h4>
-                      </div>
-                      </div>
-  
-                      </div>
-
-                </div>
-            </div> 
-        </div>
-        <!-- /#page-content-wrapper -->
-    </div>   
 </template>
 
 
-<template name='companyNotFound'>
-<h3>404 Error: Could not find company with listed ID - Please return to All ROI page</h3>
+<template name='game'>
+
+  <tr class='game-entry'>
+  <td>{{gamename}}</td>
+  <td>{{players}}</td>
+  <td><button class='.join-game btn-default'>Join</button></td>
+  </tr>
+
 </template>
 
+<template name='create'>
+{{> header}}
+<div id="wrapper">
 
-
-<template name="insertCompanyForm">
-  {{> quickForm collection="Companies" id="insertCompany" type="insert" buttonContent="Submit Company" }} 
-  <!-- template="bootstrap3-horizontal" label-class="col-sm-6" input-col-class="col-sm-6" -->
-  <!-- <h5>Your Company: {{companyName}}</h5> -->
-</template>
-
-<template name="editCompanyForm">
-  {{> quickForm collection="Companies" id="editCompany" type="update" doc=selectedCompanyDoc buttonContent="Update Company" resetOnSuccess=false}} 
-</template>
-
-<template name="viewCompanyForm">
-  {{> quickForm collection="Companies" id="viewCompany" type="disabled" doc=selectedCompanyDoc}}
-</template>
-
-<!-- ANALYTICS TODO -->
-<template name='analytics'>
- <div id="wrapper">
-        {{> sidebar}}
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                <div id='login-buttons'>{{> loginButtons}}</div> 
-                       <h3>Company Analytics</h3>
-                       <ul>
-                         <li>Average Efficiency Improvement with HackerRank: {{avg_efficiency_improvement}}%</li>
-                         <li>Average ROI (%) with HackerRank Investment: {{avg_roi}}%</li>
-                         <li>Time to Fill: {{avg_time_to_fill}}</li>
-                         <li>Opportunity Cost of Position: {{avg_opportunity_cost}}</li>
-                         <li>Employee Count: {{avg_employee_count}}</li>
-                       </ul>
+                <h1>Create New Game:</h1>
+                
+                       {{> createGameForm}}
                 </div>
             </div> 
         </div>
@@ -228,8 +71,307 @@
 
 
 
+</template>
+
+
+<template name='features'>
+
 
 </template>
+
+<template name='pricing'>
+
+
+</template>
+
+
+<template name='gameboard'>
+
+    <div class='game-container'>
+
+        <div class='game-board'>
+
+        </div>
+
+
+        <div class='game-state'>
+
+
+        </div>
+
+
+    </div>
+
+</template>
+
+
+
+
+
+<template name='leaderboard'>
+ <table class='table game-table'>
+    <tr>
+    <th>Name</th>
+    <th>Games</th>
+    <th>Wins/Losses</th>
+    </tr>
+
+    {{#each players}}
+        {{> player}}
+    {{/each}}
+    </table>
+
+</template>
+
+<template name='person'>
+  <tr class='leaderboard-entry'>
+  <td>{{username}}</td>
+  <td>{{games}}</td>
+  <td>{{wins}}/{{losses}}</td>
+  </tr>
+</template>
+
+<template name='login'>
+
+
+</template>
+
+
+<template name='createGameForm'>
+
+    <!-- Add specific quickform details here -->
+    {{> quickForm}}
+
+</template>
+
+<template name='header'>
+
+<nav class="navbar navbar-dark navbar-fixed-top top-nav-collapse" role="navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/">
+                        <span class="logo">
+                        <!-- <h4 style='margin-top: 5px'>Connect 4 for Work</h4> -->
+                            <img src="connect4.png" alt="">for Work
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <!--
+                        <li class="page-scroll active">
+                            <a href="#about">About</a>
+                        </li>
+                        -->
+                        <li class="page-scroll">
+                            <a href="/games">Games</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/features">Features</a>
+                        </li><!--
+                        <li class="page-scroll">
+                            <a href="#work">Work</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#blog">Blog</a>
+                        </li>
+                        -->
+                        <li class="page-scroll">
+                            <a href="/pricing">Pricing</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/about">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+</template>
+
+<template name='home'>
+{{> header}}
+    <a name="about"></a>
+        <div id="intro-header">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="intro-message">
+                            <h1>Connect 4 Online</h1>
+                            <hr class="intro-divider">
+
+                            <!-- <p>{{> loginButtons}}</p> -->
+                            <button class='main-start-button btn-large btn-success'>Start</button>
+                            <!--
+                            <hr class="intro-divider">
+                            
+                            <ul class="list-inline intro-social-buttons">
+                                <li>
+                                    <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                                </li>
+                            </ul>
+                            -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+        <!-- /.intro-header -->
+
+        <!-- Page Content -->
+
+        <a  name="features"></a>
+        <!-- <h2 class='page-header'>Features</h2> -->
+        <div class="content-section-a">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-sm-6">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                         <h2 class="section-heading">Challenge the World, and<br>Show your Skills</h2>
+                        <p class="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
+                    </div>
+                    <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                        <!-- <img class="img-responsive" src="homeimage1.png" alt=""> -->
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+        <!-- /.content-section-a -->
+
+        <div class="content-section-b">
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                        <h2 class="section-heading">Play with your Friends,<br>and your Colleagues</h2>
+                        <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+                    </div>
+                    <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                        <!-- <img class="img-responsive" src="homeimage2.png" alt=""> -->
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+        <!-- /.content-section-b -->
+
+        <div class="content-section-a">
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-5 col-sm-6">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                        <h2 class="section-heading">Company Competitions, and <br/>Rankings</h2>
+                        <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+                    </div>
+                    <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                        <!-- <img class="img-responsive" src="homeimage3.png" alt=""> -->
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+        <!-- /.content-section-a -->
+
+        <a  name="pricing"></a>
+        <!-- <h2 class='page-header'>Pricing</h2> -->
+        <div style='height: 400px;'></div>
+
+        <a  name="contact"></a>
+        <div class="banner">
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>'Connect' with Connect 4 Online:</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="list-inline banner-social-buttons">
+                            <li>
+                                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+        <!-- /.banner -->
+    </template>
+
+    <template name='bottom'>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; Stockwatcher 2015. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </template>
+
 
 <template name='about'>
   <div id="wrapper">
@@ -239,8 +381,8 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                <div id='login-buttons'>{{> loginButtons}}</div> 
-                       <h4>About ROI Calculator</h4>
+                
+                       <h4>About Connect 4</h4>
                         {{> about_text}}
                 </div>
             </div> 
@@ -248,188 +390,4 @@
         <!-- /#page-content-wrapper -->
     </div>  
 </template>
-
-
-<template name='roi_results'>
-{{#with company}}
-  <h4>ROI Calculations for {{companyName}}:</h4>
-
-  <table class='table striped '>
-    <tr>
-    <th>Metric</th><th>Value</th>
-    </tr>
-    <tr>
-    <td>New Average Hires per Recruiter</td><td>{{hiresPerYear}} hires</td>
-    </tr>
-    <tr>
-    <td>Cost per Hire</td><td>${{costPerHire}}</td>
-    </tr>
-    <tr>
-    <td>Improved Recruiter Efficiency</td><td>{{improvedEfficiencyPerRecruiter}}%</td>
-    </tr>
-
-  <tr>
-    <td>New Cost per Hire</td><td>${{improvedCostPerHire}}</td>
-    </tr>
-    
-
-    <tr>
-    <td>Hire Savings per Recruiter</td><td>${{savingsPerRecruiter}}</td>
-    </tr>
-    <!--
-    <tr>
-    <td>totalRecruiterSavings</td><td>${{totalRecruiterSavings}}</td>
-    </tr>
-    -->
-    <tr>
-    <td>Average Days between Hires</td><td>{{avgDaysBetweenHire}} days</td>
-    </tr>
-    <tr>
-    <td>New Average Days between Hires</td><td>{{improvedAvgDaysBetweenHire}} days</td>
-    </tr>
-    <tr>
-    <td>Opportunity Cost Savings per Recruiter</td><td>${{savedOpportunityCostPerRecruiter}}</td>
-    </tr>
-    <!--
-      <tr>
-    <td>Opportunity Cost Savings per Recruiter</td><td>${{totalOpportunityCostSavings}}</td>
-    </tr>
-  -->
-  
-      <tr>
-    <td>Total Savings per Recruiter (Annual)</td><td>${{totalSavingsPerRecruiter}}</td>
-    </tr>
-    <!--
-    <tr>
-    <td>Total Recruiter Savings (Annual)</td><td>${{totalSavings}}</td>
-    </tr>
-  -->
-    <!--
-     <tr>
-    <td>totalSavings</td><td>${{totalSavings}}</td>
-    </tr>
-  -->
-    <tr>
-    <td>Total Cost of HackerRank Per Recruiter</td><td>${{costHackerRankRecruiter}}</td>
-    </tr>
-
-
-
-    
-    <tr>
-    <td>ROI per Recruiter (savings-cost)/cost</td><td>{{calculatedROI}}%
-    </td>
-    </tr>
-
-    <tr>
-    <td>Net Benefit per Year</td><td>${{netReturn}}</td>
-    </tr>
-
-
-    
-
-
-  </table>
-<!--
-  <canvas id="myChart" width="400" height="400"></canvas>
--->
-
-{{/with}}
-</template>
-
-
-<!-- -->
-
-<template name='sidebar'>
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-
-                    <a href="/" >
-              
-                    <img src='dino_logo.png' class='img-logo'/>
-                    
-                        <span style='color: white !important;'>
-                        &nbsp;HackerROI Panel
-                        </span>
-                         
-
-                    </a>
-                </li>
-                
-                
-                
-                <li>
-                    <a href="/">All ROI's</a>
-                </li>
-                {{#if currentUser}}
-                <li>
-                    <a href="/recent">Your ROI's</a>
-                </li>
-                {{/if}}
-                <li>
-                    <a href="/newroi" >New ROI</a>
-                </li>
-                <!--
-                <li>
-                    <a href="/analytics">Analytics</a>
-                </li>
-
-                -->
-                <li>
-                    <a href="/about">About</a>
-                </li>
-                
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-</template>
-
-<template name='about_text'>
-
-<p>This calculation is based on the number of positions filled by each recruiter. An increase in the number of positions filled without an increase in recruiter cost translates into a cost savings. Benefits may also be realized through better candidate screening, improved sourcing or reduced search expenses. Savings may also be realized through a reduction in the use of contract recruiters.</p>
-
-<p>This calculation is based on the increase in positions filled per recruiter from Scenario 1. The improvement is reflected in a shorter time for the recruiter to find and qualify candidates for each position. There may be additional savings in time-to-hire from reduced sourcing time due to the improved job targeting, reduced interview time due to a better short list of candidates, etc. </p>
-
-<p>This calculation only deals with postings to job boards. Additional savings may be realized by analysis of print ads, job fairs and other sourcing activities.</p>
-
-<p>This calculation is based on the small percentage of positions filled by outside agencies. The gains in efficiency realized above may give recruiters more time to fill positions that would otherwise be outsourced to an agency.</p>
-
-<p>Though we would like to just add up the total savings, it is judicious to adjust the calculation. Some savings may or may not be realized as direct cost reductions. Benefits may be realized as improved quality, process improvement or even better retention rates from hiring better candidates.</p>
-
-</template>
-
-<!-- OLD autoform code -->
-<!--
-                        {{#autoForm id="afInsertDemo" type="insert" collection=Collections.People}}
-                      <div class="form-group {{#if afFieldIsInvalid name='firstName'}}has-error{{/if}}">
-                        <label class="control-label">{{afFieldLabelText name='firstName'}}</label>
-                        {{> afFieldInput name='firstName'}}
-                        {{#if afFieldIsInvalid name='firstName'}}
-                        <span class="help-block">{{{afFieldMessage name='firstName'}}}</span>
-                        {{/if}}
-                      </div>
-                      <div class="form-group {{#if afFieldIsInvalid name='lastName'}}has-error{{/if}}">
-                        <label class="control-label">{{afFieldLabelText name='lastName'}}</label>
-                        {{> afFieldInput name='lastName'}}
-                        {{#if afFieldIsInvalid name='lastName'}}
-                        <span class="help-block">{{{afFieldMessage name='lastName'}}}</span>
-                        {{/if}}
-                      </div>
-                      <div class="form-group {{#if afFieldIsInvalid name='age'}}has-error{{/if}}">
-                        <label class="control-label">{{afFieldLabelText name='age'}}</label>
-                        {{> afFieldInput name='age'}}
-                        {{#if afFieldIsInvalid name='age'}}
-                        <span class="help-block">{{{afFieldMessage name='age'}}}</span>
-                        {{/if}}
-                      </div>
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Add Person</button>
-                        <button type="reset" class="btn btn-default">Reset Form</button>
-                      </div>
-                    {{/autoForm}}
-                    -->
-
-
 
