@@ -67,8 +67,13 @@
 }
 
 .img-logo {
-    height: 50px;
-    width: 50px;
+    height: 64px;
+    width: 64px;
+}
+
+.new-co {
+    clear: both;
+    margin-bottom: 15px;
 }
 
 .sidebar-nav li {
@@ -137,9 +142,33 @@
     }
 }
 
-.login-buttons {
+.graphs {
+
+}
+.table th {
+    align: center !important;
+}
+.roi-entry td {
+    text-align: center;
+}
+
+
+
+.roi-entry:hover {
+    background: #eee;
+    /*cursor: pointer;*/
+}
+
+.header-image {
+    float: left;
+    width:20%;
+    height:20%;
+    clear: both;
+}
+
+#login-buttons {
     display: none !important; /*Remove once user accoutns supported*/
-    
+
 }
 
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 

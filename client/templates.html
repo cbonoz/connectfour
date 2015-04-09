@@ -1,57 +1,43 @@
- 
+   
 
 
 
 
-<template name='dashboard'>
+
+<template name='newroi'>
   <div id="wrapper">
         {{> sidebar}}
         
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <div class="row">      
+                <div class="row">
+                <img class='header-image' src='hackerrank_work_logo.png'/>
                       <div id='login-buttons'>{{> loginButtons}}</div>
-                      <h4>Enter your ROI company info</h4>
-                      <!-- Form for entering ROI info for company -->
-                      <div class="row">
-                        <div class="span4">
-                          {{> insertCompanyForm}}
-                        </div>
-                        <div class="span4">
-                          {{> insertCompanyForm}}
+                      <h4 style='clear: both !important;'>&nbsp;&nbsp;&nbsp;Start a New ROI Calculation Below:</h4>
 
-                        </div>
-                          {{> insertCompanyForm}}
-                        <div class="span2">
-                          
-                          
-                        </div>
-                      </div>
-                      
+                         <div class="row">
 
-                      
-                      
-                      
-                    
-                        
-        
+                          <div class="span6">
+                            
+                            {{> insertCompanyForm}}
+                            </div>
+                            
+                              <div class='span4' style='margin-top: 15px;'>
+                                  <p><b>Please enter exact or approximate values for the fields to the left for the best possible ROI estimate for HackerRank investment. Enter values without commas or symbols ($,%, etc.)</b></p>
+                              </div>
+                            </div>
+
                 </div>
             </div> 
         </div>
         <!-- /#page-content-wrapper -->
-    </div>
-        
-
-        
-</template>
-
-<template name="insertCompanyForm">
-  {{> quickForm collection="Companies" id="insertCompanyForm" type="insert"}}
+    </div>   
 </template>
 
 
-<template name='recent'>
+
+<template name='allroi'>
   <div id="wrapper">
         {{> sidebar}}
         
@@ -59,21 +45,41 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
+               
                 <div id='login-buttons'>{{> loginButtons}}</div>
-                <p>This is the 'recent' template</p>
-                  <table class='table'>
+                
+                <h4>List of Previously Calculated ROI's 
+
+                </h4>
+                <!-- 
+                <input type="text" class="name-search" placeholder="Company Search">
+                 -->
+                  
+              
+                
+              
+                <script>
+                console.log('Companies in company table: ' + Companies.find().count());
+                </script>
+                <div >
+                  <table class='table roi'>
                   <tr>
-                  <th>Company</th>
-                  <th>Employees</th>
-                  <th>ROI of Purchase (%)</th>
-                  <th>Edit</th>
+                  <th  style='text-align: center;'>Company</th>
+                  <th style='text-align: center;'># Recruiters</th>
+                 <th style='text-align: center;'>View</th>
+                  <th style='text-align: center;'>Edit/Delete</th>
                   </tr>
-                  <!--
-                    {{#each companies}}
-                        {{> roi_row}}
+                  {{#each companies}}
+                        {{> company}}
                     {{/each}}
-                    -->
                     </table>
+
+                      <div style='text-align: center;'>
+                      {{> flashMessages}}
+                      {{> newCompanyButton}}
+                      <b>{{numCompanies}}</b> ROI Records
+                      </div>
+                    </div>
                  </div>
             </div> 
         </div>
@@ -81,57 +87,154 @@
     </div>
 </template>
 
-
-<template name='all'>
-  <div id="wrapper">
-        {{> sidebar}}
-        
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                <div id='login-buttons'>{{> loginButtons}}</div>
-
-                <p>This is the 'recent' template</p>
-                  <table class='table'>
-                  <tr>
-                  <th>Company</th>
-                  <th>Employees</th>
-                  <th>ROI of Purchase (%)</th>
-                  <th>Edit</th>
-                  </tr>
-                  <!--
-                    {{#each companies}}
-                        {{> roi_row}}
-                    {{/each}}
-                    -->
-                    </table>
-                 </div>
-            </div> 
-        </div>
-        <!-- /#page-content-wrapper -->
-    </div>
+<template name='newCompanyButton'>
+  <div class='new-co'><button class='btn-success btn-med'>Create a New ROI Report</button></div>
 </template>
 
         
-<template name="roi_row">
+<template name="company">
     <tr class='roi-entry'>
     <td>{{name}}</td>
-    <td>{{employees}}</td>
-    <td>{{roi}}</td>
-    <td><button type='button' onclick=''>Edit</button></td>
+    <td>{{num_recruiters}}</td>
+    
+    <td><button type='button' class='view-company btn btn-default'> View </button></td>
+    
+    <td><button type='button' class='edit-company btn btn-info'> Edit </button>
+    &nbsp;
+    <button type='button' class='delete-company btn btn-danger'> Delete </button></td>
     </tr>
 </template>
 
-<template name='update_company'>
+<template name='roiEditDetail'>
+  <div id="wrapper">
+        {{> sidebar}}
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">     
+                      <div id='login-buttons'>{{> loginButtons}}</div>
+                      <h4>Update the Company ROI Info</h4>
+                      <!-- Form for entering ROI info for company -->
 
+                      <div class="row">
+
+                        <div class="span4">
+                          {{> flashMessages}}
+                          {{> editCompanyForm }}
+                          
+                        </div>
+
+                        <div class="span4">
+                        {{> roi_results}}
+                        
+                          
+                        </div>
+                          
+                      </div>
+
+                </div>
+            </div> 
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>   
 </template>
 
+<template name='roiViewDetail'>
+  <div id="wrapper">
+        {{> sidebar}}
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">     
+                      <div id='login-buttons'>{{> loginButtons}}</div>
+                      <h4>View the Company ROI Info</h4>
+                      <!-- Form for entering ROI info for company -->
+
+                      <div class="row">
+
+                        <div class="span4">
+                       
+                          {{> viewCompanyForm}}
+                        
+                        </div>
+
+                        <div class="span4">
+
+                        {{> roi_results}}
+                       
+                        </div>
+  
+                    
+                      <div class="row">
+                      <div class='span6 graphs'>
+                      <h4>Graphs go down here:</h4>
+                      </div>
+                      </div>
+  
+                      </div>
+
+                </div>
+            </div> 
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>   
+</template>
+
+
+<template name='companyNotFound'>
+<h3>404 Error: Could not find company with listed ID - Please return to All ROI page</h3>
+</template>
+
+
+
+<template name="insertCompanyForm">
+  {{> quickForm collection="Companies" id="insertCompany" type="insert" buttonContent="Submit Company" }} 
+  <!-- template="bootstrap3-horizontal" label-class="col-sm-6" input-col-class="col-sm-6" -->
+  <!-- <h5>Your Company: {{companyName}}</h5> -->
+</template>
+
+<template name="editCompanyForm">
+  {{> quickForm collection="Companies" id="editCompany" type="update" doc=selectedCompanyDoc buttonContent="Update Company" resetOnSuccess=false}} 
+</template>
+
+<template name="viewCompanyForm">
+  {{> quickForm collection="Companies" id="viewCompany" type="disabled" doc=selectedCompanyDoc}}
+</template>
+
+<!-- ANALYTICS TODO -->
+<template name='analytics'>
+ <div id="wrapper">
+        {{> sidebar}}
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                <div id='login-buttons'>{{> loginButtons}}</div> 
+                       <h3>Company Analytics</h3>
+                       <ul>
+                         <li>Average Efficiency Improvement with HackerRank: {{avg_efficiency_improvement}}%</li>
+                         <li>Average ROI (%) with HackerRank Investment: {{avg_roi}}%</li>
+                         <li>Time to Fill: {{avg_time_to_fill}}</li>
+                         <li>Opportunity Cost of Position: {{avg_opportunity_cost}}</li>
+                         <li>Employee Count: {{avg_employee_count}}</li>
+                       </ul>
+                </div>
+            </div> 
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>  
+
+
+
+
+</template>
 
 <template name='about'>
   <div id="wrapper">
         {{> sidebar}}
-  
+
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
@@ -147,6 +250,93 @@
 </template>
 
 
+<template name='roi_results'>
+{{#with company}}
+  <h4>ROI Calculations for {{companyName}}:</h4>
+
+  <table class='table striped '>
+    <tr>
+    <th>Metric</th><th>Value</th>
+    </tr>
+    <tr>
+    <td>New Average Hires per Recruiter</td><td>{{hiresPerYear}} hires</td>
+    </tr>
+    <tr>
+    <td>Cost per Hire</td><td>${{costPerHire}}</td>
+    </tr>
+    <tr>
+    <td>Improved Recruiter Efficiency</td><td>{{improvedEfficiencyPerRecruiter}}%</td>
+    </tr>
+
+  <tr>
+    <td>New Cost per Hire</td><td>${{improvedCostPerHire}}</td>
+    </tr>
+    
+
+    <tr>
+    <td>Hire Savings per Recruiter</td><td>${{savingsPerRecruiter}}</td>
+    </tr>
+    <!--
+    <tr>
+    <td>totalRecruiterSavings</td><td>${{totalRecruiterSavings}}</td>
+    </tr>
+    -->
+    <tr>
+    <td>Average Days between Hires</td><td>{{avgDaysBetweenHire}} days</td>
+    </tr>
+    <tr>
+    <td>New Average Days between Hires</td><td>{{improvedAvgDaysBetweenHire}} days</td>
+    </tr>
+    <tr>
+    <td>Opportunity Cost Savings per Recruiter</td><td>${{savedOpportunityCostPerRecruiter}}</td>
+    </tr>
+    <!--
+      <tr>
+    <td>Opportunity Cost Savings per Recruiter</td><td>${{totalOpportunityCostSavings}}</td>
+    </tr>
+  -->
+  
+      <tr>
+    <td>Total Savings per Recruiter (Annual)</td><td>${{totalSavingsPerRecruiter}}</td>
+    </tr>
+    <!--
+    <tr>
+    <td>Total Recruiter Savings (Annual)</td><td>${{totalSavings}}</td>
+    </tr>
+  -->
+    <!--
+     <tr>
+    <td>totalSavings</td><td>${{totalSavings}}</td>
+    </tr>
+  -->
+    <tr>
+    <td>Total Cost of HackerRank Per Recruiter</td><td>${{costHackerRankRecruiter}}</td>
+    </tr>
+
+
+
+    
+    <tr>
+    <td>ROI per Recruiter (savings-cost)/cost</td><td>{{calculatedROI}}%
+    </td>
+    </tr>
+
+    <tr>
+    <td>Net Benefit per Year</td><td>${{netReturn}}</td>
+    </tr>
+
+
+    
+
+
+  </table>
+<!--
+  <canvas id="myChart" width="400" height="400"></canvas>
+-->
+
+{{/with}}
+</template>
+
 
 <!-- -->
 
@@ -158,14 +348,20 @@
 
                     <a href="/" >
               
-                    <img src='hackerrank_icon.png' class='img-logo'/>
+                    <img src='dino_logo.png' class='img-logo'/>
                     
-                        &nbsp;ROI Calculator
+                        <span style='color: white !important;'>
+                        &nbsp;HackerROI Panel
+                        </span>
+                         
+
                     </a>
                 </li>
                 
+                
+                
                 <li>
-                    <a href="/" >New ROI</a>
+                    <a href="/">All ROI's</a>
                 </li>
                 {{#if currentUser}}
                 <li>
@@ -173,21 +369,18 @@
                 </li>
                 {{/if}}
                 <li>
-                    <a href="/all">All ROI's</a>
+                    <a href="/newroi" >New ROI</a>
                 </li>
                 <!--
                 <li>
-                    <a href="#">Events</a>
+                    <a href="/analytics">Analytics</a>
                 </li>
+
                 -->
                 <li>
                     <a href="/about">About</a>
                 </li>
-                <!--
-                <li>
-                    <a href="">Contact</a>
-                </li>
-                -->
+                
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
