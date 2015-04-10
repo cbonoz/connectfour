@@ -16,7 +16,10 @@
                         {{> currentgames}}
                         </div>
                         <div class='create-section'>
-                        <i>No Games? Start your own.</i><br/>
+                        <br/>
+                        <p style='font-size: 14px;'><b>{{numGames}}</b> games found.</p>
+                        
+                        <i>Can't find a game? Start your own</i><br/>
                         <button class='create-button btn-success btn-med'>Start New Game</button>
                         </div>
                 </div>
@@ -31,7 +34,8 @@
     <tr>
     <th style='text-align: center;'>Name</th>
     <th style='text-align: center;'>Players</th>
-    <th style='text-align: center;'>Join</th>
+    <th style='text-align: center;'>Created</th>
+    <th style='text-align: center;'>Join/View</th>
     </tr>
     {{#each games}}
       {{> game}}
@@ -47,22 +51,36 @@
   <tr class='game-entry'>
   <td>{{gamename}}</td>
   <td>{{players}}</td>
+  <td>{{datecreated}}</td>
   <td><button class='.join-game btn-default'>Join</button></td>
   </tr>
 
 </template>
 
-<template name='create'>
-{{> header}}
-<div id="wrapper">
+<template name='creategame'>
+    {{> header}}
+    <div id="wrapper">
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                <h1>Create New Game:</h1>
+                <div class='create-form'>
+                    <h2 class='header-text'>Create New Game</h2><br/>
+
+
+                    <form>
+                    <input type="text" name="namefield" placeholder="Enter game name" />
+                    <br/>
+                    <input type="text" name="emailfield" placeholder="Enter player emails" />
+                    <br/>
+
+                    <input type="submit" class="centered" value="Start Game">
+                    </form>
+
+                    {{> flashMessages}}
                 
-                       {{> createGameForm}}
+                    </div>
                 </div>
             </div> 
         </div>
@@ -74,33 +92,48 @@
 </template>
 
 
-<template name='features'>
 
 
-</template>
-
-<template name='pricing'>
-
-
-</template>
 
 
 <template name='gameboard'>
+{{> header}}
+<div id="wrapper">
 
-    <div class='game-container'>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+          
+                <div class="row">
+             
+                {{#with currentgame}}
+                <div class='game-container'>
 
-        <div class='game-board'>
+                    <div class='game-board'>
+                    <h2>Game: {{gamename}}</h2>
+                    <h5>Players: {{playernames}}</h5>
 
+                    </div>
+
+
+                    <div class='game-state'>
+
+
+                    </div>
+
+
+                </div>
+                {{/with}}
+
+
+
+                </div>
+            </div> 
         </div>
+        <!-- /#page-content-wrapper -->
+    </div>  
 
 
-        <div class='game-state'>
-
-
-        </div>
-
-
-    </div>
 
 </template>
 
@@ -140,7 +173,7 @@
 <template name='createGameForm'>
 
     <!-- Add specific quickform details here -->
-    {{> quickForm}}
+    <!--{{> quickForm}}-->
 
 </template>
 
@@ -373,9 +406,44 @@
     </template>
 
 
+<template name='features'>
+{{> header}}
+<div id="wrapper">
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                <h2 class='header-text'>Features</h2>
+            </div> 
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>  
+</div>
+</template>
+
+<template name='pricing'>
+{{> header}}
+<div id="wrapper">
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                <h2 class='header-text'>Pricing</h2>
+
+                </div>
+            </div> 
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>  
+
+</template>
+
 <template name='about'>
+{{> header}}
   <div id="wrapper">
-        {{> sidebar}}
+        
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
@@ -383,11 +451,13 @@
                 <div class="row">
                 
                        <h4>About Connect 4</h4>
-                        {{> about_text}}
+                        {{> aboutcontent}}
                 </div>
             </div> 
         </div>
         <!-- /#page-content-wrapper -->
     </div>  
+</template>
+<template name='aboutcontent'>
 </template>
 
