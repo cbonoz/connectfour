@@ -1,19 +1,25 @@
 .game-container {
-
-
+	max-width:800px;
+	margin-top:15px;
+	margin: 0 auto;
 }
 
 .game-board {
-
+	width: 75%;
 
 }
 
 
 .game-state {
-
+	width:25%;
+	float: right;
 }
 
 
 .create-form {
 	margin: 0 auto;
+}
+
+.menu-return {
+	clear: both;
 }

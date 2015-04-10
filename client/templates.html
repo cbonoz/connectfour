@@ -15,10 +15,8 @@
                        <div class='games-section'>
                         {{> currentgames}}
                         </div>
-                        <div class='create-section'>
+                         <div class='numgames'>
                         <br/>
-                        <p style='font-size: 14px;'><b>{{numGames}}</b> games found.</p>
-                        
                         <i>Can't find a game? Start your own</i><br/>
                         <button class='create-button btn-success btn-med'>Start New Game</button>
                         </div>
@@ -42,6 +40,9 @@
     {{/each}}
     
   </table>
+  <div class='numgames'>
+  <p style='font-size: 14px;'><b>{{numGames}}</b> games found.</p>
+  </div>
 
 </template>
 
@@ -50,9 +51,9 @@
 
   <tr class='game-entry'>
   <td>{{gamename}}</td>
-  <td>{{players}}</td>
+  <td>{{playernames}}</td>
   <td>{{datecreated}}</td>
-  <td><button class='.join-game btn-default'>Join</button></td>
+  <td><button class='join-game btn btn-info'>Join</button></td>
   </tr>
 
 </template>
@@ -111,12 +112,14 @@
 
                     <div class='game-board'>
                     <h2>Game: {{gamename}}</h2>
-                    <h5>Players: {{playernames}}</h5>
+                    <h5>Players: {{playerEmails}}</h5>
 
                     </div>
 
 
                     <div class='game-state'>
+                        <button class='btn-med btn-default menu-return'>Return</button>
+                        <button class='btn-med btn-default end-game'>End Game</button>
 
 
                     </div>

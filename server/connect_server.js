@@ -1,9 +1,9 @@
 
-Meteor.publish("Games", function () {
+Meteor.publish("games", function () {
     return Games.find({});
 });
 
-Meteor.publish("Players", function () {
+Meteor.publish("players", function () {
     return Players.find({});
 });
 

@@ -1,5 +1,6 @@
-Meteor.subscribe('Games');
-Meteor.subscribe('Users');
+Meteor.subscribe('games');
+Meteor.subscribe('players');
+
 FlashMessages.configure({
     autoHide: true,
     hideDelay: 5000,
@@ -8,14 +9,14 @@ FlashMessages.configure({
 
 var RUNNING = 0;
 var STOPPED = 1;
-var ZERO_BOARD = new Array([
+var ZERO_BOARD = [
 [0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0]
-]);
+];
 
 Template.home.events({
   "click .main-start-button": function() {
@@ -23,6 +24,7 @@ Template.home.events({
     Router.go('/games');
   }
   });
+
 
 Template.games.events({
   "click .create-button": function() {
@@ -32,18 +34,18 @@ Template.games.events({
   },
 
     "click .join-game" : function () {
-      Session.set("selectedGameId", this._id);
-      console.log('Viewing game: ' + this._id);
-      Router.go('gamePlayDetail', {_id: this._id});      
+      Session.set("selectedGameName", this.gamename);
+      console.log('Viewing game: ' + this.gamename);
+      Router.go('gameboard', {_name: this.gamename});      
     }
 
 });
 
-Template.games.helpers({
+Template.currentgames.helpers({
 
   games: function() {
     //return Companies.find();
-    return Games.find({},{sort:{createdat:-1}, reactive:true});
+    return Games.find({},{sort:{datecreated:-1}, reactive:true});
   },
   numGames: function() {
     return Games.find().count();
@@ -58,20 +60,22 @@ Template.creategame.events({
 
     var nametext = event.target.namefield.value;
     var emailtext = event.target.emailfield.value;
-    console.log('Creating game: ' + nametext);
+    console.log('Creating game: ' + nametext + ', players: ' + emailtext);
 
     if (Games.findOne({gamename: nametext})) {
         FlashMessages.sendError('Failed to Create: Game with same name already exists!');
        return;
     }
+
     Games.insert({
       gamename: nametext,
       playernames: [emailtext],
       datecreated: new Date(), // current time
       boardstate: ZERO_BOARD,
-      gamestate: RUNNING,
-      players: 1
-    }, function() {
+      gamestate: RUNNING
+    }, function(error, result) {
+      console.log('Insert error: ' + error);
+      console.log('Insert result: ' + result);
       Session.set("selectedGameName",nametext);
       Router.go('gameboard', {_name: nametext});
     });
@@ -87,19 +91,42 @@ Template.home.rendered = function() {
 
 
 Template.game.helpers({
-  "click .game-entry ": function() {
-    var gameId = this._id;
-    Router.go('gamePlayDetail', gameId);
+  "click .join-game ": function() {
+    var currentname = this.gamename;
+    Session.set("selectedGameName",currentname);
+    console.log('Entering game: ')
+    Router.go('gameboard', currentname);
   }
 });
 
 Template.gameboard.helpers({
   currentgame: function() {
-    var current_gamename = Session.get("selectedGameName");
+    var currentname = Session.get("selectedGameName");
     
-    console.log('current game: ' + current_gamename);
-    return Games.findOne({gamename: current_gamename});
+    console.log('current game: ' + currentname);
+    return Games.findOne({gamename: currentname});
+  },
+  playerEmails: function() {
+    return this.playernames.join(',');
   }
 });
+
+Template.gameboard.events({
+  'click .menu-return': function() {
+    console.log('Return to menu');
+    Router.go('/games');
+  },
+   'click .end-game': function() {
+    console.log('Game Ended');
+    //delete game from collection here
+    var currentname = Session.get("selectedGameName");
+    console.log('Game ' + currentname + ' ended.');
+    Games.remove(this._id);
+    Router.go('/games');
+  }
+});
+
+
+
 
 
