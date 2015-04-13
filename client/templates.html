@@ -4,13 +4,13 @@
 <template name='games'>
 {{> header}}
     <div id="wrapper">
- 
+
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                
+
                        <h4 style='text-align: center;'>Connect 4 Games</h4>
                        <div class='games-section'>
                         {{> currentgames}}
@@ -21,10 +21,10 @@
                         <button class='create-button btn-success btn-med'>Start New Game</button>
                         </div>
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 </template>
 
 <template name='currentgames'>
@@ -38,7 +38,7 @@
     {{#each games}}
       {{> game}}
     {{/each}}
-    
+
   </table>
   <div class='numgames'>
   <p style='font-size: 14px;'><b>{{numGames}}</b> games found.</p>
@@ -80,13 +80,13 @@
                     </form>
 
                     {{> flashMessages}}
-                
+
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 
 
 
@@ -104,9 +104,9 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-          
+
                 <div class="row">
-             
+
                 {{#with currentgame}}
                 <div class='game-container'>
 
@@ -124,17 +124,20 @@
 
                     </div>
 
-
+                    <div class="game-box">
+                      <table id="grid" cellpadding="0"></table>
+                    </div>
+                    
                 </div>
                 {{/with}}
 
 
 
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 
 
 
@@ -251,7 +254,7 @@
                             <button class='main-start-button btn-large btn-success'>Start</button>
                             <!--
                             <hr class="intro-divider">
-                            
+
                             <ul class="list-inline intro-social-buttons">
                                 <li>
                                     <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
@@ -418,10 +421,10 @@
             <div class="container-fluid">
                 <div class="row">
                 <h2 class='header-text'>Features</h2>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 </div>
 </template>
 
@@ -436,31 +439,30 @@
                 <h2 class='header-text'>Pricing</h2>
 
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 
 </template>
 
 <template name='about'>
 {{> header}}
   <div id="wrapper">
-        
+
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                
+
                        <h4>About Connect 4</h4>
                         {{> aboutcontent}}
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 </template>
 <template name='aboutcontent'>
 </template>
-

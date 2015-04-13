@@ -2,19 +2,21 @@
 	max-width:800px;
 	margin-top:15px;
 	margin: 0 auto;
+	overflow: hidden;
+}
+
+.game-box {
+	overflow:hidden;
 }
 
 .game-board {
 	width: 75%;
-
 }
-
 
 .game-state {
 	width:25%;
 	float: right;
 }
-
 
 .create-form {
 	margin: 0 auto;
@@ -22,4 +24,33 @@
 
 .menu-return {
 	clear: both;
+}
+
+#grid {
+	border-collapse: collapse;
+}
+
+#grid td {
+    border: 1px dashed #808080;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+		border-radius: 50%;
+}
+
+#grid td:hover::after {
+    background-color: rgba(175,168,168,0.5);
+    content: '';
+    height: 10000px;
+    left: 0;
+    position: absolute;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}
+
+#grid tr {
+    width: 100%;
+    height: 100%;
 }

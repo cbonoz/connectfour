@@ -36,7 +36,7 @@ Template.games.events({
     "click .join-game" : function () {
       Session.set("selectedGameName", this.gamename);
       console.log('Viewing game: ' + this.gamename);
-      Router.go('gameboard', {_name: this.gamename});      
+      Router.go('gameboard', {_name: this.gamename});
     }
 
 });
@@ -79,7 +79,7 @@ Template.creategame.events({
       Session.set("selectedGameName",nametext);
       Router.go('gameboard', {_name: nametext});
     });
-    
+
     // Prevent default form submit
     return false;
   }
@@ -102,7 +102,6 @@ Template.game.helpers({
 Template.gameboard.helpers({
   currentgame: function() {
     var currentname = Session.get("selectedGameName");
-    
     console.log('current game: ' + currentname);
     return Games.findOne({gamename: currentname});
   },
@@ -126,7 +125,27 @@ Template.gameboard.events({
   }
 });
 
+Template.gameboard.onRendered(function() {
+  var game_board = "";
+  for (var i = 0; i < 6; i++) {
+    game_board += "<tr>";
+    for (var j = 0; j < 7; j++) {
+        game_board += "<td class='empty'></td>";
+    }
+    game_board += "</tr>";
+  }
+  
+  $("#grid").html(game_board);
+  console.log(grid);
 
+  var td = document.getElementById('game_board').getElementsByTagName("td");
 
-
-
+  // Adding listeners here
+  for (var i = 0; i < td.length; i++) {
+    if (td[i].addEventListener) {
+        td[i].addEventListener('click', act, false);
+    } else if (td[i].attachEvent) {
+        td[i].attachEvent('click', act);
+    }
+  }
+});
