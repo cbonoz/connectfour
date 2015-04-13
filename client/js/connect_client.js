@@ -22,6 +22,10 @@ Template.home.events({
   "click .main-start-button": function() {
     console.log('going to games list');
     Router.go('/games');
+  },
+
+  "click .go-to-pricing": function() {
+    Router.go('/pricing');
   }
   });
 
@@ -38,7 +42,6 @@ Template.games.events({
       console.log('Viewing game: ' + this.gamename);
       Router.go('gameboard', {_name: this.gamename});      
     }
-
 });
 
 Template.currentgames.helpers({
@@ -125,6 +128,12 @@ Template.gameboard.events({
     Router.go('/games');
   }
 });
+
+Template.gameboard.rendered = function() {
+
+  //add gameplay logic here
+
+};
 
 
 

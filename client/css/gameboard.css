@@ -2,9 +2,10 @@
 	max-width:800px;
 	margin-top:15px;
 	margin: 0 auto;
+
 }
 
-.game-board {
+.game-area {
 	width: 75%;
 
 }
@@ -22,4 +23,130 @@
 
 .menu-return {
 	clear: both;
+}
+
+body {
+    display: block;
+    margin: 10px;
+    text-align: center;
+}
+
+.game-container h1 {
+    color: white;
+    font-family: Verdana;
+    font-size: 3em;
+    background-color: blue;
+    box-shadow: 5px 5px 5px black;
+    margin: auto;
+    display: inline-block;
+}
+
+
+
+.playgrid .button {
+    height: 30px;
+    border: 4px solid black;
+    border-radius: 10px;
+    background-color: blue;
+    margin: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+.playgrid .column {
+    padding: 0;
+    margin: 0;
+    height: 160px;
+    width: 26px;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-color: blue;
+}
+
+.playgrid {
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    display: inline-block;
+}
+
+.columncontainer {
+    display: inline-block;
+}
+
+.columncontainer .button {
+    width: 20px;
+}
+
+.reset {
+    width: 100px;
+    display: block;
+    margin: auto;
+}
+
+.displaycontainer {
+    height: 160px;
+    width: 100px;
+    display: inline-block;
+}
+
+.display {
+    margin: 3px 0 3px 0;
+    font-family: Verdana;
+}
+
+.win {
+    display: none;
+}
+
+.displaycontainer > div {
+    margin: auto;
+    width: 52px;
+    height: 52px;
+}
+
+.displaycontainer .token {
+    height:40px;
+    width: 40px;
+    margin: auto;
+    border-width: 6px;
+}
+
+.game-title {
+	margin-bottom: 15px;
+}
+
+.hint {
+    font-family: Verdana;
+    font-size: 12px;
+}
+
+.button p {
+    color: white;
+    font-family: Verdana;
+    margin: 5px 0 0 0;
+    text-align: center;
+}
+
+.player1 {
+    background-color: red;
+    border: 3px solid orange;
+}
+
+.player2 {
+    background-color: black;
+    border: 3px solid gray;
+}
+
+.token {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    margin: auto;
+}
+
+.gamecontainer .token {
+    position: absolute;
 }
