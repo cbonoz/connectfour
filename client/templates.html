@@ -4,13 +4,13 @@
 <template name='games'>
 {{> header}}
     <div id="wrapper">
- 
+
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                
+
                        <h4 style='text-align: center;'>Connect 4 Games</h4>
                        <div class='games-section'>
                         {{> currentgames}}
@@ -21,10 +21,10 @@
                         <button class='create-button btn-success btn-med'>Start New Game</button>
                         </div>
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 </template>
 
 <template name='currentgames'>
@@ -38,7 +38,7 @@
     {{#each games}}
       {{> game}}
     {{/each}}
-    
+
   </table>
   <div class='numgames'>
   <p style='font-size: 14px;'><b>{{numGames}}</b> games found.</p>
@@ -80,13 +80,13 @@
                     </form>
 
                     {{> flashMessages}}
-                
+
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 
 
 
@@ -104,82 +104,43 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-          
+
                 <div class="row">
-             
+
                 {{#with currentgame}}
                 <div class='game-container'>
 
                     <div class='game-area'>
                     <h2>Game: {{gamename}}</h2>
                     <h5>Players: {{playerEmails}}</h5>
-                    
-                            <h1 class='game-title'>&nbsp;Connect Four&nbsp;</h1>
-                        <table><tr><td>
-                         <div class='playgrid'>
-                        <div class="columncontainer">
-                                <div class="column"></div>
-                                <div class="button"></div>
-                            </div>
-                            <div class="columncontainer">
-                                <div class="column"></div>
-                                <div class="button"></div>
-                            </div>
-                            <div class="columncontainer">
-                                <div class="column"></div>
-                                <div class="button"></div>
-                            </div>
-                            <div class="columncontainer">
-                                <div class="column"></div>
-                                <div class="button"></div>
-                            </div>
-                            <div class="columncontainer">
-                                <div class="column"></div>
-                                <div class="button"></div>
-                            </div>
-                            <div class="columncontainer">
-                                <div class="column"></div>
-                                <div class="button"></div>
-                            </div>
-                            <div class="columncontainer">
-                                <div class="column"></div>
-                                <div class="button"></div>
-                            </div>
-                        </div>
-                        </td><td>
-                        <div class="displaycontainer">
-                            <h4 class="display">Player:</h4>
-                            <div><div class="token player2"></div></div>
-                            <h2 class="display win">Winner!</h2>
-                            <h3 class="display win">Game Over</h3>
-                        </div>
-                        <div>
-                            <p class="hint">&larr; Click to drop a token<br>into a column!</p>
-                        </div>
-                        </td></tr>
-                        </table>
-
+                      <div class="game-box">
+                      <table id="grid" cellpadding="0"></table>
                     </div>
 
                     </div>
+
 
 
                     <div class='game-state'>
-                        <button class='btn-med btn-default menu-return'>Return</button>
-                        <button class='btn-med btn-default end-game'>End Game</button>
+                        <button class='btn-med btn-info menu-return'>Return</button>
+                        <button class='btn-med btn-info end-game'>End Game</button>
 
 
                     </div>
+
+                  
+                    
+                </div>
 
                 {{/with}}
 
 
 
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 
 
 
@@ -296,7 +257,7 @@
                             <button class='main-start-button btn-large btn-success'>Start</button>
                             <!--
                             <hr class="intro-divider">
-                            
+
                             <ul class="list-inline intro-social-buttons">
                                 <li>
                                     <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
@@ -467,10 +428,10 @@
             <div class="container-fluid">
                 <div class="row">
                 <h2 class='header-text'>Features</h2>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 </div>
 </template>
 
@@ -485,31 +446,30 @@
                 <h2 class='header-text'>Pricing</h2>
 
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 
 </template>
 
 <template name='about'>
 {{> header}}
   <div id="wrapper">
-        
+
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                
+
                        <h4>About Connect 4</h4>
                         {{> aboutcontent}}
                 </div>
-            </div> 
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
-    </div>  
+    </div>
 </template>
 <template name='aboutcontent'>
 </template>
-
